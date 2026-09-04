@@ -42,6 +42,10 @@ FEATURES = [
     "brent_usd_var_pct_1d", "brent_usd_var_pct_7d",
     "eur_usd_var_pct_1d", "eur_usd_var_pct_7d",
     "brent_eur_var_pct_1d", "brent_eur_var_pct_7d",
+    "gasolina_spot_eur_l", "gasoleo_spot_eur_l", "crack_gasolina", "crack_gasoleo",
+    "gasolina_spot_eur_l_var_pct_7d", "gasoleo_spot_eur_l_var_pct_7d",
+    "wti_usd", "wti_usd_var_pct_7d",
+    "evento_covid", "evento_guerra", "evento_crise_isp", "epoca_ferias",
     "isp_eur_l", "iva_taxa", "carga_fiscal_pct", "preco_sem_impostos_eur_l",
     "mes", "trimestre", "semana_ano", "dia_semana", "fim_de_semana", "feriado",
 ]

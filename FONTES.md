@@ -25,6 +25,16 @@ Descarregáveis em CSV, sem chave de API. Guardados em cache local (`dados/exter
 |---|---|---|
 | **Petróleo Brent (USD/barril)** | `DCOILBRENTEU` | <https://fred.stlouisfed.org/series/DCOILBRENTEU> |
 | **Câmbio EUR/USD** | `DEXUSEU` | <https://fred.stlouisfed.org/series/DEXUSEU> |
+| **Gasolina spot US Gulf Coast (USD/galão)** ¹ | `DGASUSGULF` | <https://fred.stlouisfed.org/series/DGASUSGULF> |
+| **Gasóleo spot US Gulf Coast (USD/galão)** ¹ | `DDFUELUSGULF` | <https://fred.stlouisfed.org/series/DDFUELUSGULF> |
+| **Petróleo WTI (USD/barril)** | `DCOILWTICO` | <https://fred.stlouisfed.org/series/DCOILWTICO> |
+
+¹ **A2 — produto refinado:** usado como *proxy* dos preços grossistas (tipo Roterdão),
+que é o elo em falta entre o crude e o preço à bomba. Convertido para €/litro e usado
+para calcular o **crack spread** (margem de refinação = produto − crude). O produto
+refinado (`gasoleo_spot_eur_l`) correlaciona-se **0,91** com o preço à bomba, mais do
+que o Brent (0,82). *(A4: os stocks/inventários semanais da EIA não estão acessíveis
+via FRED neste ambiente — apenas o crack spread foi implementado.)*
 
 Download direto (CSV):
 ```bash

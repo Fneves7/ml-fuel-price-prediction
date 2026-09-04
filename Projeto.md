@@ -28,6 +28,9 @@ preço do combustível em Portugal:
 | **Petróleo Brent (USD/barril)** | FRED `DCOILBRENTEU` | principal matéria-prima; principal driver internacional |
 | **Câmbio EUR/USD** | FRED `DEXUSEU` | o petróleo é cotado em dólares, mas pagamos em euros |
 | **Brent em EUR (derivado)** | cálculo | o custo real da matéria-prima para o consumidor português |
+| **Produto refinado spot** (gasolina/gasóleo) | FRED (US Gulf Coast) | o elo entre o crude e a bomba; correlaciona **0,91** com o preço (> Brent) |
+| **Crack spread + WTI** | derivado / FRED | margem de refinação (produto − crude) e 2.º crude de referência |
+| **Eventos/choques** (COVID, guerra, crise ISP, férias) | flags | explicam desvios face ao Brent; ajudam a direção a 7 dias |
 | **ISP** (imposto sobre produtos petrolíferos) | Portarias / DR / OA | é uma das maiores fatias do preço; a sua descida em 2022 baixou o preço |
 | **IVA** (taxa normal) | legislação | incide sobre base + ISP; ~½ do preço da gasolina são impostos |
 | **Calendário + feriados nacionais** | cálculo | os preços atualizam em dias fixos e congelam ao fim de semana |
@@ -227,6 +230,12 @@ python scripts/08_multiclasse.py            # 3 classes: desce/mantém/sobe
 python scripts/09_probabilidade.py          # previsão com probabilidade calibrada
 python scripts/10_decisao.py                # "atesto hoje ou espero?" (poupança €)
 python scripts/11_dashboard.py              # gera dashboard.html (previsão do dia)
+python scripts/12_previsao_ao_vivo.py       # previsão do dia no terminal (guarda o modelo)
+python scripts/13_por_combustivel.py        # B6: pooled vs por combustível
+python scripts/14_permutacao.py             # B7: importância por permutação
+python scripts/15_analise_erros.py          # B10: onde falha o modelo
+python scripts/16_shap.py                   # B11: explicabilidade (SHAP)
+python scripts/17_skill_horizonte.py        # B12: skill por horizonte (1/3/7/14d)
 ```
 Ver `LOG.md` para o registo detalhado de todo o trabalho realizado e
 `FONTES.md` para todas as fontes de dados (DGEG, FRED, ISP/IVA).

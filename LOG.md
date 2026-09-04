@@ -245,6 +245,41 @@ código). Implementados os **19 algoritmos** em `scripts/supervisionada/` (4 fam
 - **Apresentação** (`apresentacao.html`) atualizada com um slide "Da previsão à decisão"
   (B8 probabilidade + B9 poupança). Passou a 13 slides.
 
+## 6j. Secção A do backlog — enriquecimento de dados
+- **A2 (produto refinado) + A4 (crack spread):** juntadas as séries FRED `DGASUSGULF`
+  (gasolina spot) e `DDFUELUSGULF` (gasóleo spot) + WTI; derivados `*_spot_eur_l`,
+  `crack_gasolina/gasoleo` (produto − crude) e respetivas variações. O produto refinado
+  correlaciona **0,91** com o preço à bomba (> Brent 0,82) — o "elo em falta".
+- **A5:** limpo o pico de 6 dias do Gasóleo especial (ago/2009).
+- **A8:** flags `evento_covid`, `evento_guerra`, `evento_crise_isp`, `epoca_ferias`.
+- Dataset: 48 → **72 colunas**. Impacto: 1 dia mantém-se (~0,82, já saturado); **direção
+  a 7 dias melhora** (RF 0,689 → 0,717). Features adicionadas em `scripts/03` e `06`.
+- **A1/A3/A6/A7 — documentados (não implementados):** A1 fica em 13 âncoras oficiais;
+  A3 (taxa carbono) sem série anual fiável; A6 (Espanha) sem série histórica na API;
+  A7 (Google Trends) bloqueado. Ver `BACKLOG.md`/`FONTES.md`.
+
+## 6k. Ponto F concluído + âmbito só supervisionado
+- **F2 (+ C5)** — `scripts/12_previsao_ao_vivo.py`: previsão do dia seguinte no terminal
+  (direção + confiança + recomendação por combustível). O modelo calibrado é guardado
+  em `modelos/modelo_direcao.joblib` (joblib) e reutilizado. `.gitignore` criado.
+- **Âmbito:** o utilizador quer **só aprendizagem supervisionada** — a secção E do
+  backlog (clustering, PCA/LDA, reforço) fica **fora de âmbito**. Ver [[preferencias-trabalho]].
+
+## 6l. Ponto B concluído (B6, B7, B10, B11, B12)
+Módulo partilhado `scripts/_comum_modelo.py` (features enriquecidas). Instalado `shap`.
+- **B6** (`scripts/13`): pooled 0,818 ≥ por combustível 0,806 → o modelo único é tão bom
+  ou melhor; não vale separar. Figura `20`.
+- **B7** (`scripts/14`): importância por permutação confirma dia da semana + variação
+  recente + produto refinado (`gasoleo_spot_var_7d`). Figura `21`.
+- **B10** (`scripts/15`): erro global 18,3%; concentra-se em dias de variação ≈0 (22%)
+  e no GPL/Gasolina 98 (30-35%); sexta é o dia mais previsível (5%). Figura `22`.
+  (O painel "choque vs normal" não é possível no teste: `evento_guerra` persiste desde
+  2022 → substituído por erro mensal.)
+- **B11** (`scripts/16`): SHAP beeswarm (dia da semana, momentum, produto refinado). Fig `23`.
+- **B12** (`scripts/17`): skill por horizonte 81%(1d) → 81%(3d) → 70%(7d) → 68%(14d),
+  sempre acima do acaso. Figura `24`.
+Secções A, B, D, F concluídas; E fora de âmbito. Resta só C (qualidade), opcional.
+
 ## 7. Conclusão do trabalho
 Sim, é possível prever a **direção** do preço com utilidade (≈79 %, acima do acaso
 de 61 %); prever o **valor exato** não compensa (o preço é muito estável dia-a-dia).

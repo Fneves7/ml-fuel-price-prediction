@@ -11,5 +11,7 @@ statsmodels>=0.14 # séries temporais: ARIMA, SARIMA, suavização exponencial
 catboost>=1.2     # métodos de conjunto
 prophet>=1.1      # séries temporais
 tensorflow>=2.15  # séries temporais: LSTM
+shap>=0.44        # B11 — explicabilidade
+joblib>=1.3       # F2/C5 — guardar modelos (já vem com scikit-learn)
 pypdf>=4.0        # opcional: extrair Portarias de ISP dos PDFs do DR
 cryptography>=3.1 # opcional: PDFs do DR estão cifrados (AES)

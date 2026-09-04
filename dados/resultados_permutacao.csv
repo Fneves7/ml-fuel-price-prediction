@@ -1,0 +1,51 @@
+,0
+dia_semana,0.197
+comb_Biodiesel B15,0.0361
+comb_Gasolina 98,0.0127
+variacao_7d,0.0112
+variacao_1d,0.0096
+gasoleo_spot_eur_l_var_pct_7d,0.0066
+comb_Gasolina especial 95,0.0045
+variacao_pct_1d,0.0029
+comb_Gasóleo especial,0.0022
+brent_eur_var_pct_7d,0.002
+isp_eur_l,0.0016
+gasolina_spot_eur_l_var_pct_7d,0.0015
+preco_sem_impostos_eur_l,0.0015
+preco_eur_l,0.0011
+brent_usd,0.0008
+brent_eur_media_movel_7d,0.0008
+fim_de_semana,0.0007
+preco_lag_1d,0.0006
+media_movel_30d,0.0005
+comb_Gasóleo simples,0.0005
+semana_ano,0.0004
+media_movel_7d,0.0003
+brent_eur_var_pct_1d,0.0003
+wti_usd,0.0003
+preco_lag_30d,0.0002
+brent_usd_var_pct_1d,0.0002
+preco_lag_7d,0.0002
+gasolina_spot_eur_l,0.0001
+eur_usd_var_pct_1d,0.0001
+evento_guerra,0.0
+evento_crise_isp,0.0
+comb_GPL Auto,0.0
+feriado,0.0
+iva_taxa,0.0
+evento_covid,0.0
+comb_Gasolina simples 95,-0.0
+trimestre,-0.0
+epoca_ferias,-0.0001
+comb_Gasolina especial 98,-0.0004
+mes,-0.0006
+brent_usd_var_pct_7d,-0.0006
+brent_eur,-0.0008
+eur_usd_var_pct_7d,-0.001
+carga_fiscal_pct,-0.0012
+gasoleo_spot_eur_l,-0.0013
+eur_usd,-0.0013
+wti_usd_var_pct_7d,-0.0015
+crack_gasoleo,-0.0018
+crack_gasolina,-0.0023
+desvio_media_30d,-0.0028

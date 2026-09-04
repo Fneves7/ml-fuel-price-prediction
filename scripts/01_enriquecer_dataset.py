@@ -49,6 +49,11 @@ PASTA_DADOS.mkdir(exist_ok=True)
 
 CACHE_BRENT = PASTA_DADOS / "externo_brent.csv"
 CACHE_EURUSD = PASTA_DADOS / "externo_eurusd.csv"
+# A2/A4: produto refinado (US Gulf Coast, proxy dos grossistas tipo Roterdão) + WTI
+CACHE_GASOLINA_SPOT = PASTA_DADOS / "externo_DGASUSGULF.csv"
+CACHE_GASOLEO_SPOT = PASTA_DADOS / "externo_DDFUELUSGULF.csv"
+CACHE_WTI = PASTA_DADOS / "externo_DCOILWTICO.csv"
+GAL_POR_LITRO = 3.78541   # 1 galão US = 3,78541 L
 SAIDA = PASTA_DADOS / "dataset_enriquecido.csv"
 
 FRED = "https://fred.stlouisfed.org/graph/fredgraph.csv?id={}"
@@ -87,9 +92,17 @@ def ler_precos_base() -> pd.DataFrame:
     n_altos = int((df["preco_eur_l"] > 3).sum())
     df.loc[df["preco_eur_l"] > 3, "preco_eur_l"] = np.nan
 
-    if n_zeros or n_altos:
+    # LIMPEZA 3 (A5): pico isolado no Gasóleo especial em ago/2009 — 6 dias a
+    # ~1,57 €/L quando os vizinhos (e os outros combustíveis) estavam a ~1,12 €/L.
+    # Erro de registo pontual -> NaN.
+    erro_2009 = ((df["tipoCombustivel"] == "Gasóleo especial") &
+                 (df["data"].between("2009-08-04", "2009-08-09")))
+    n_2009 = int(erro_2009.sum())
+    df.loc[erro_2009, "preco_eur_l"] = np.nan
+
+    if n_zeros or n_altos or n_2009:
         print(f"[base] limpeza: {n_zeros} preços a 0 € + {n_altos} preços > 3 €/L "
-              f"tratados como dados em falta")
+              f"+ {n_2009} do pico de ago/2009 tratados como dados em falta")
 
     df = df[["data", "tipoCombustivel", "preco_eur_l"]]
     df = df.sort_values(["tipoCombustivel", "data"]).reset_index(drop=True)
@@ -136,27 +149,37 @@ def preparar_series_externas(data_min, data_max) -> pd.DataFrame:
     o comportamento real dos mercados (vale a última cotação)."""
     brent = descarregar_fred("DCOILBRENTEU", CACHE_BRENT, "brent_usd")
     eurusd = descarregar_fred("DEXUSEU", CACHE_EURUSD, "eur_usd")
+    # A2/A4: preços grossistas de produto refinado ($/galão) + WTI ($/barril)
+    gasspot = descarregar_fred("DGASUSGULF", CACHE_GASOLINA_SPOT, "gasolina_spot_usd_gal")
+    gasospot = descarregar_fred("DDFUELUSGULF", CACHE_GASOLEO_SPOT, "gasoleo_spot_usd_gal")
+    wti = descarregar_fred("DCOILWTICO", CACHE_WTI, "wti_usd")
 
     calendario = pd.DataFrame(
         {"data": pd.date_range(data_min, data_max, freq="D")}
     )
-    ext = (
-        calendario
-        .merge(brent, on="data", how="left")
-        .merge(eurusd, on="data", how="left")
-        .sort_values("data")
-    )
+    ext = calendario
+    for parte in (brent, eurusd, gasspot, gasospot, wti):
+        ext = ext.merge(parte, on="data", how="left")
+    ext = ext.sort_values("data")
 
     # Preencher gaps: mercado fechado -> mantém-se a última cotação
-    ext["brent_usd"] = ext["brent_usd"].ffill()
-    ext["eur_usd"] = ext["eur_usd"].ffill()
-    # Preencher eventuais NaN iniciais para trás (raro)
-    ext[["brent_usd", "eur_usd"]] = ext[["brent_usd", "eur_usd"]].bfill()
+    cols = ["brent_usd", "eur_usd", "gasolina_spot_usd_gal",
+            "gasoleo_spot_usd_gal", "wti_usd"]
+    ext[cols] = ext[cols].ffill().bfill()
 
     # Derivada económica: preço do barril de Brent em EUROS (o que nos custa)
     ext["brent_eur"] = ext["brent_usd"] / ext["eur_usd"]
 
-    print(f"[externo] Brent + EUR/USD alinhados em "
+    # A2: produto refinado em €/litro (proxy do custo grossista à saída da refinaria)
+    ext["gasolina_spot_eur_l"] = ext["gasolina_spot_usd_gal"] / GAL_POR_LITRO / ext["eur_usd"]
+    ext["gasoleo_spot_eur_l"] = ext["gasoleo_spot_usd_gal"] / GAL_POR_LITRO / ext["eur_usd"]
+
+    # A4: crack spread (margem de refinação) = produto - crude, em $/galão
+    # (Brent $/barril ÷ 42 galões = $/galão)
+    ext["crack_gasolina"] = ext["gasolina_spot_usd_gal"] - ext["brent_usd"] / 42.0
+    ext["crack_gasoleo"] = ext["gasoleo_spot_usd_gal"] - ext["brent_usd"] / 42.0
+
+    print(f"[externo] Brent + EUR/USD + produto refinado + WTI alinhados em "
           f"{len(ext):,} dias contínuos")
     return ext
 
@@ -351,6 +374,13 @@ def adicionar_features_e_alvos(df: pd.DataFrame) -> pd.DataFrame:
     feriados = feriados_pt(range(df["ano"].min(), df["ano"].max() + 1))
     df["feriado"] = df["data"].isin(feriados).astype(int)
 
+    # A8: flags de EVENTOS/CHOQUES conhecidos que movem o preço para além do Brent
+    d = df["data"]
+    df["evento_covid"] = d.between("2020-03-01", "2020-06-30").astype(int)   # crash da procura
+    df["evento_guerra"] = (d >= "2022-02-24").astype(int)                    # invasão da Ucrânia
+    df["evento_crise_isp"] = d.between("2022-03-14", "2023-12-31").astype(int)  # corte do ISP
+    df["epoca_ferias"] = d.dt.month.isin([7, 8]).astype(int)                 # verão/mobilidade
+
     # --- Features por combustível (ordenar por data dentro de cada grupo) ---
     df = df.sort_values(["tipoCombustivel", "data"]).reset_index(drop=True)
     g = df.groupby("tipoCombustivel", group_keys=False)
@@ -382,6 +412,12 @@ def adicionar_features_e_alvos(df: pd.DataFrame) -> pd.DataFrame:
         df[f"{col}_var_pct_7d"] = g[col].pct_change(7) * 100
     df["brent_eur_media_movel_7d"] = g["brent_eur"].transform(
         lambda s: s.rolling(7, min_periods=1).mean())
+
+    # A2/A4: variações do produto refinado, crack spread e WTI
+    for col in ["gasolina_spot_eur_l", "gasoleo_spot_eur_l",
+                "crack_gasolina", "crack_gasoleo", "wti_usd"]:
+        df[f"{col}_var_pct_1d"] = g[col].pct_change() * 100
+        df[f"{col}_var_pct_7d"] = g[col].pct_change(7) * 100
 
     # --- ALVOS (o que queremos prever) ---
     # 1) Dia seguinte: valor, direção (sobe/desce) e VARIAÇÃO (delta)
