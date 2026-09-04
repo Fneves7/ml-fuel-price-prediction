@@ -242,6 +242,8 @@ código). Implementados os **19 algoritmos** em `scripts/supervisionada/` (4 fam
 - **F1 — dashboard** (`scripts/11_dashboard.py` → `dashboard.html`): "Vou atestar hoje?"
   com previsão + confiança + recomendação por combustível; publicado como Artifact.
   (Bug corrigido: `preco_eur_l` estava duplicado nas colunas → erro do LightGBM.)
+- **Apresentação** (`apresentacao.html`) atualizada com um slide "Da previsão à decisão"
+  (B8 probabilidade + B9 poupança). Passou a 13 slides.
 
 ## 7. Conclusão do trabalho
 Sim, é possível prever a **direção** do preço com utilidade (≈79 %, acima do acaso
