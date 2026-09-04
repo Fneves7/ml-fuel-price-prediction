@@ -13,7 +13,16 @@ Registo de todas as fontes usadas no projeto, para transparência e reprodutibil
 | **Página** | <https://precoscombustiveis.dgeg.gov.pt/estatistica/preco-medio-diario/> |
 | **Ficheiro** | `Postos.csv` |
 | **Conteúdo** | Preço médio diário de 8 combustíveis em Portugal |
-| **Período** | 2008-11-18 a 2026-09-01 |
+| **Período** | desde 2008-11-18 (atualizado automaticamente) |
+
+**Atualização automática (API da DGEG):** o `scripts/00_atualizar_postos.py` vai buscar
+os dias mais recentes à mesma API que a página "Preço médio diário" usa, e acrescenta-os
+ao `Postos.csv` (corre no início do `run_all`). Endpoint (GET, devolve JSON):
+```
+https://precoscombustiveis.dgeg.gov.pt/api/PrecoComb/PMD?idsTiposComb=&dataIni=YYYY-MM-DD&dataFim=YYYY-MM-DD&qtdPorPagina=9999&pagina=1&orderDesc=0
+```
+Campos usados: `Data`, `TipoCombustivel`, `PrecoMedioC4` (preço a 4 casas, ex.: "0,8849 €").
+Descoberto pela inspeção dos pedidos de rede da página; filtra os 8 combustíveis do projeto.
 
 ---
 

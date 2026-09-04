@@ -16,6 +16,7 @@ RAIZ = Path(__file__).resolve().parent.parent
 SCRIPTS = RAIZ / "scripts"
 
 PRINCIPAL = [
+    "00_atualizar_postos.py",                       # buscar dados novos à DGEG
     "01_enriquecer_dataset.py", "testes_pipeline.py", "02_analise_dados.py",
     "03_modelo_classificacao.py", "04_modelo_regressao.py",
     "05_modelo_delta_e_7dias.py", "06_gradient_boosting.py",
@@ -23,6 +24,7 @@ PRINCIPAL = [
     "10_decisao.py", "11_dashboard.py", "12_previsao_ao_vivo.py",
     "13_por_combustivel.py", "14_permutacao.py", "15_analise_erros.py",
     "16_shap.py", "17_skill_horizonte.py",
+    "18_apresentacao.py",                           # gerar apresentacao.html
 ]
 SUPERVISIONADA = [
     "supervisionada/01_regressao.py", "supervisionada/02_classificacao.py",

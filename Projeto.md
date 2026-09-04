@@ -219,6 +219,7 @@ no *holdout*, e os parâmetros de defeito já estavam bem escolhidos. (Honestida
 ## Como reproduzir
 ```bash
 pip install -r requirements.txt
+python scripts/00_atualizar_postos.py       # busca dias novos à DGEG (opcional)
 python scripts/01_enriquecer_dataset.py     # cria dados/dataset_enriquecido.csv
 python scripts/02_analise_dados.py          # gera as figuras em figuras/
 python scripts/03_modelo_classificacao.py   # modelo sobe/desce (1 dia)
@@ -239,7 +240,8 @@ python scripts/17_skill_horizonte.py        # B12: skill por horizonte (1/3/7/14
 
 # utilitários
 python scripts/testes_pipeline.py           # 11 testes de integridade (sem leakage…)
-python scripts/run_all.py                    # corre tudo por ordem (--tudo p/ os 19 algoritmos)
+python scripts/18_apresentacao.py           # gera apresentacao.html (deck de slides)
+python scripts/run_all.py                    # corre TUDO por ordem (00→18; --tudo inclui os 19 algoritmos)
 ```
 Ver `LOG.md` para o registo detalhado de todo o trabalho realizado e
 `FONTES.md` para todas as fontes de dados (DGEG, FRED, ISP/IVA).

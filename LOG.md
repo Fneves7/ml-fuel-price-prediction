@@ -295,6 +295,20 @@ Secções A, B, D, F concluídas; E fora de âmbito. Resta só C (qualidade), op
   os restantes devem descer ou manter-se."), para o leitor perceber logo. O `run_all`
   regenera o `dashboard.html`; a publicação como Artifact continua a ser um passo à parte.
 
+## 6o. Atualização automática da DGEG + apresentação no run_all
+(pedido do utilizador)
+- **Apresentação no `run_all`:** o builder do deck foi copiado do scratchpad para
+  `scripts/18_apresentacao.py` (caminho portável) e adicionado ao fim do `run_all`.
+- **Atualizar Postos.csv da DGEG:** descobriu-se, inspecionando os pedidos de rede da
+  página "Preço médio diário" (via browser interno), o endpoint
+  `api/PrecoComb/PMD?...&dataIni=&dataFim=&qtdPorPagina=9999`. O
+  `scripts/00_atualizar_postos.py` lê a última data do `Postos.csv`, pede à DGEG só o
+  que é novo, filtra os 8 combustíveis e acrescenta (usa `PrecoMedioC4`, 4 casas).
+  urllib com fallback para curl; se não houver rede, avisa e continua. Testado:
+  acrescentou 2026-09-02 e 09-03. Corre no INÍCIO do `run_all`.
+- `run_all` agora faz o ciclo completo: atualizar dados → enriquecer → modelos →
+  dashboard/previsão → apresentação. Endpoint documentado em `FONTES.md`.
+
 ## 7. Conclusão do trabalho
 Sim, é possível prever a **direção** do preço com utilidade (≈79 %, acima do acaso
 de 61 %); prever o **valor exato** não compensa (o preço é muito estável dia-a-dia).

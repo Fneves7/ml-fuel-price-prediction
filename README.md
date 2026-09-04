@@ -14,6 +14,12 @@ acaso. Prever o *valor exato* não compensa; prever a *variação* sim (+22 % vs
 ```bash
 pip install -r requirements.txt
 
+# CORRER TUDO com um comando (atualiza dados DGEG → modelos → dashboard → apresentação):
+python scripts/run_all.py
+
+# … ou passo a passo:
+# 0) atualizar Postos.csv com os dias mais recentes da DGEG
+python scripts/00_atualizar_postos.py
 # 1) enriquecer o dataset (cria dados/dataset_enriquecido.csv)
 python scripts/01_enriquecer_dataset.py
 # 2) análise exploratória (gera figuras em figuras/)
