@@ -76,6 +76,19 @@ for _, r in alvo.iterrows():
 n_sobe = int((alvo["p_sobe"] >= 0.5).sum()); n_desce = len(alvo) - n_sobe
 data_ref = ultima.strftime("%d/%m/%Y"); data_prox = proximo.strftime("%d/%m/%Y")
 
+# Frase em linguagem simples (nomeia os combustíveis que devem subir)
+sobem = [html.escape(r["tipoCombustivel"]) for _, r in alvo.iterrows() if r["p_sobe"] >= 0.5]
+if not sobem:
+    frase = ("Amanhã, <b>nenhum</b> combustível deve subir — o modelo estima que todos "
+             "vão <b>descer ou manter-se</b>. Pode esperar.")
+elif len(sobem) == len(alvo):
+    frase = "Amanhã, <b>todos</b> os combustíveis devem <b>subir</b> — convém atestar hoje."
+else:
+    lista = (" e ".join(sobem) if len(sobem) <= 2
+             else ", ".join(sobem[:-1]) + " e " + sobem[-1])
+    frase = (f"Amanhã, o preço de <b>{lista}</b> deve <b>subir</b> — se precisa destes, "
+             f"convém <b>atestar hoje</b>. Os restantes devem descer ou manter-se.")
+
 HTML = f'''<title>Vou Atestar Hoje?</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -98,6 +111,10 @@ header.top h1{{font-family:var(--disp);font-weight:800;font-size:2.2rem;margin:0
   letter-spacing:-.02em;position:relative;z-index:2}}
 header.top p{{margin:0;color:#CFE0E6;font-size:1rem;position:relative;z-index:2}}
 header.top b{{color:#fff}}
+.resumo{{margin:14px 0 0;font-size:1.06rem;line-height:1.5;color:#EEF5F6;
+  background:rgba(242,161,4,.14);border-radius:10px;padding:12px 16px;
+  position:relative;z-index:2}}
+.resumo b{{color:#F2A104}}
 .summary{{display:flex;gap:22px;margin-top:16px;position:relative;z-index:2}}
 .summary div{{font-family:var(--mono);font-size:.9rem;color:#CFE0E6}}
 .summary b{{font-family:var(--disp);font-size:1.4rem;display:block}}
@@ -136,6 +153,7 @@ header.top b{{color:#fff}}
     <h1>Vou atestar hoje?</h1>
     <p>Estimativa do movimento do preço à bomba <b>amanhã</b> ({data_prox}),
        a partir dos dados de <b>{data_ref}</b>.</p>
+    <p class="resumo">{frase}</p>
     <div class="summary">
       <div class="s-up"><b>{n_sobe}</b> devem subir</div>
       <div class="s-down"><b>{n_desce}</b> devem descer/manter</div>

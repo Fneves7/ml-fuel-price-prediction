@@ -289,6 +289,12 @@ Secções A, B, D, F concluídas; E fora de âmbito. Resta só C (qualidade), op
   supervisionada). Usado também para refrescar todos os outputs após o C1.
 - **Backlog encerrado:** secções A, B, C, D, F feitas; E fora de âmbito.
 
+## 6n. Dashboard mais explícito
+- `scripts/11_dashboard.py` passou a gerar uma **frase em linguagem simples** no topo
+  (ex.: "Amanhã, o preço de X e Y deve subir — se precisa destes, convém atestar hoje;
+  os restantes devem descer ou manter-se."), para o leitor perceber logo. O `run_all`
+  regenera o `dashboard.html`; a publicação como Artifact continua a ser um passo à parte.
+
 ## 7. Conclusão do trabalho
 Sim, é possível prever a **direção** do preço com utilidade (≈79 %, acima do acaso
 de 61 %); prever o **valor exato** não compensa (o preço é muito estável dia-a-dia).
