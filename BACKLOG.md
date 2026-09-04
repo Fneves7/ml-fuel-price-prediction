@@ -23,7 +23,7 @@ Legenda de esforço: 🟢 baixo · 🟡 médio · 🔴 alto. Valor: ⭐ (1 a 3).
 | ~~B2~~ | ~~**Regressão do *delta***~~ ✅ FEITO | 🟢 | ⭐⭐⭐ | `scripts/05`. RF bate o baseline "prever 0" em **+22 %** MAE; R²=0,38; 76 % direção. Figura `13_regressao_delta`. |
 | ~~B3~~ | ~~**Gradient boosting** (XGBoost / LightGBM)~~ ✅ FEITO | 🟡 | ⭐⭐ | `scripts/06`. Sem vencedor universal: XGB/LGBM ganham a 1 dia (**0,82** vs 0,79); RF ganha no delta e a 7 dias. Figura `15`. |
 | ~~B4~~ | ~~**Validação cruzada temporal** + *tuning*~~ ✅ FEITO | 🟡 | ⭐⭐ | `scripts/07`. Robusto: ~0,78–0,79 ± 0,04 em 5 janelas. Tuning do LightGBM não melhorou o holdout (0,821→0,813). Figura `16`. |
-| B5 | **Classe "mantém"** (3 classes) ou remover dias iguais | 🟢 | ⭐⭐ | Hoje "mantém" está agregado a "desce"; 18% dos dias. Multiclasse seria mais fiel. |
+| ~~B5~~ | ~~**Classe "mantém"** (3 classes)~~ ✅ FEITO | 🟢 | ⭐⭐ | `scripts/08`. XGBoost 3 classes: **0,797** acc, F1-macro 0,795 (baseline 0,472). "Mantém" bem prevista (F1 0,79). Figura `17_confusao_3classes`. |
 | B6 | Modelos **por combustível** vs modelo único (*pooled*) | 🟡 | ⭐ | Ver se separar melhora face ao one-hot atual. |
 | B7 | **Importância por permutação** em vez de impureza | 🟢 | ⭐ | Mais fiável para interpretar variáveis. |
 
@@ -39,17 +39,18 @@ Legenda de esforço: 🟢 baixo · 🟡 médio · 🔴 alto. Valor: ⭐ (1 a 3).
 
 | # | Tarefa | Esforço | Valor | Notas |
 |---|---|---|---|---|
-| ~~D1~~ | ~~**Slides / relatório final**~~ ✅ FEITO | 🟡 | ⭐⭐⭐ | 11 slides. `Apresentacao_Combustiveis.pptx` (PowerPoint, validado) + `apresentacao.html` (deck HTML navegável, publicado como Artifact). |
-| D2 | **README** de arranque rápido (1 parágrafo + como correr) | 🟢 | ⭐⭐ | Complementa o `Projeto.md`. |
-| D3 | Rever a narrativa "IA generativa em cada fase" (exigido pelo enunciado) | 🟢 | ⭐ | Documentar onde a IA ajudou. |
+| ~~D1~~ | ~~**Slides / relatório final**~~ ✅ FEITO | 🟡 | ⭐⭐⭐ | `apresentacao.html` — deck HTML navegável (12 slides), publicado como Artifact. Só HTML (o utilizador não quer PowerPoint). |
+| ~~D2~~ | ~~**README** de arranque rápido~~ ✅ FEITO | 🟢 | ⭐⭐ | `README.md` na raiz (descrição + como correr + estrutura). |
+| ~~D3~~ | ~~Narrativa "IA generativa em cada fase"~~ ✅ FEITO | 🟢 | ⭐ | `IA_GENERATIVA.md` (mapeia as 6 fases). |
 
 ---
 
 ## Próximo passo recomendado
-~~B1, B2, B3, B4~~ ✅ **concluídos** (`scripts/05–07`; secções 5-C a 5-E do `Projeto.md`).
-A modelação está madura e validada. Próximo natural: **D1** (slides/relatório final)
-para fechar a fase de apresentação. Modelação extra opcional: B5 (classe "mantém"),
-B6 (modelos por combustível), B7 (importância por permutação).
+Concluídos: ~~B1, B2, B3, B4, B5~~ (modelação) · ~~D1, D2, D3~~ (entrega).
+O projeto está **completo, validado e documentado**. O que resta é tudo **opcional**:
+- Dados: A2 (Roterdão, ⭐⭐⭐ mas 🔴), A1/A3/A4/A5.
+- Modelação: B6 (por combustível), B7 (importância por permutação).
+- Qualidade: C1 (atualizar FRED antes de entregar), C2 (testes), C3 (fixar versões).
 
 > Nada aqui é bloqueante: o projeto já está **completo e funcional** (dados → análise →
 > 2 modelos → avaliação → conclusão). Este backlog é só para o levar mais longe.

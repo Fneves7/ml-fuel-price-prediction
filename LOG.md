@@ -194,9 +194,8 @@ Registo cronológico de todo o trabalho realizado. Data: **2026-09-03**.
 - Figura `16_validacao_tuning`; `dados/resultados_validacao_temporal.csv`.
 
 ## 6f. D1 — Apresentação final (fase 6)
-- **PowerPoint:** `Apresentacao_Combustiveis.pptx` (11 slides, tema energia/petróleo,
-  gerado com pptxgenjs). Validação do ficheiro passou. QA visual via LibreOffice não
-  possível neste Windows (soffice usa AF_UNIX; sem pdftoppm).
+- **Formato: só HTML** — o utilizador não quer PowerPoints (o `.pptx` que chegou a ser
+  gerado foi removido). Ver [[preferencias-trabalho]].
 - **HTML:** `apresentacao.html` — deck de slides navegável (teclado/botões/pontos,
   barra de progresso, gráficos embutidos em base64), publicado como Artifact.
   Tipografia Archivo + Public Sans + IBM Plex Mono; design de mundo único.
@@ -223,6 +222,14 @@ código). Implementados os **19 algoritmos** em `scripts/supervisionada/` (4 fam
 - Melhor resultado global para a direção: gradient boosting ~0,82.
 - **Apresentação atualizada** (pptx + HTML) com um slide novo "Testámos 19 algoritmos
   em 4 famílias" (grelha 2×2 por família). Ambas passaram a ter 12 slides.
+
+## 6h. B5 + D2 + D3
+- **B5 — classificação em 3 classes** (`scripts/08_multiclasse.py`): novo alvo
+  `target_movimento` (0 desce / 1 mantém / 2 sobe) no script 01. XGBoost: **0,797**
+  accuracy, F1-macro 0,795 (baseline 0,472); a classe "mantém" (17%) é bem prevista
+  (F1 0,79). Figura `17_confusao_3classes`; `dados/resultados_multiclasse.csv`.
+- **D2 — README** de arranque rápido (`README.md` na raiz).
+- **D3 — IA generativa** (`IA_GENERATIVA.md`): mapeia onde a IA ajudou nas 6 fases.
 
 ## 7. Conclusão do trabalho
 Sim, é possível prever a **direção** do preço com utilidade (≈79 %, acima do acaso

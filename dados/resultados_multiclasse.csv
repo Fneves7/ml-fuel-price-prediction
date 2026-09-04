@@ -1,0 +1,4 @@
+modelo,accuracy,f1_macro
+Baseline (maioritária),0.472,0.214
+Random Forest,0.764,0.767
+XGBoost,0.797,0.795

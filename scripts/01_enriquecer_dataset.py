@@ -398,6 +398,15 @@ def adicionar_features_e_alvos(df: pd.DataFrame) -> pd.DataFrame:
     df["target_subida_7d"] = (df["preco_daqui_7d"] > df["preco_eur_l"]).astype("Int64")
     df.loc[df["preco_daqui_7d"].isna(), "target_subida_7d"] = pd.NA
 
+    # 3) B5: movimento em 3 classes — 0 = desce, 1 = mantém, 2 = sobe.
+    # Mais fiel que o binário (os dias em que o preço fica igual têm classe própria).
+    dif = (df["preco_amanha"] - df["preco_eur_l"]).round(4)
+    df["target_movimento"] = pd.Series(pd.NA, index=df.index, dtype="Int64")
+    df.loc[dif < 0, "target_movimento"] = 0
+    df.loc[dif == 0, "target_movimento"] = 1
+    df.loc[dif > 0, "target_movimento"] = 2
+    df.loc[df["preco_amanha"].isna(), "target_movimento"] = pd.NA
+
     return df
 
 

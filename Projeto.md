@@ -137,6 +137,16 @@ trivial). A Regressão Linear é pior que o baseline: é preciso um modelo **nã
 
 ✅ A 7 dias o modelo acerta **69 %** (vs 53 % do acaso), com precisão/recall equilibrados.
 
+**C3) 3 classes — desce / mantém / sobe** (`scripts/08`). Em vez de esconder os dias
+"iguais" dentro de "desce", damos-lhes classe própria (~17 %).
+| Modelo | Accuracy | F1-macro |
+|---|---|---|
+| Baseline (maioritária) | 0,472 | 0,214 |
+| **XGBoost** | **0,797** | **0,795** |
+
+✅ O modelo distingue bem os três movimentos — a classe "mantém" tem F1 = 0,79 (não é
+ignorada). Ver `figuras/17_confusao_3classes.png`.
+
 ### D) Comparação de algoritmos — Gradient Boosting vs Random Forest
 Comparámos **XGBoost** e **LightGBM** com a Random Forest nas três tarefas. Conclusão
 importante: **não há um vencedor universal** — depende da tarefa.
