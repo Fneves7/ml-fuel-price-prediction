@@ -1,0 +1,4 @@
+modelo,accuracy,precisao,recall,f1
+Baseline (classe maioritária),0.531,0.531,1.0,0.694
+Regressão Logística,0.64,0.765,0.465,0.578
+Random Forest,0.689,0.733,0.652,0.69

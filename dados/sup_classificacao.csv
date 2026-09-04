@@ -1,0 +1,7 @@
+modelo,accuracy,f1
+Baseline (maioritária),0.613,0.0
+Regressão logística,0.715,0.623
+SVM linear,0.708,0.612
+SVM kernel RBF (amostra 8k),0.721,0.646
+KNN (k=25),0.733,0.613
+Naïve Bayes,0.565,0.579

@@ -1,0 +1,5 @@
+modelo,accuracy,f1
+Árvore simples,0.803,0.766
+Random Forest,0.793,0.739
+XGBoost,0.82,0.774
+CatBoost,0.819,0.778

@@ -1,0 +1,4 @@
+modelo,MAE_eur_L,RMSE_eur_L,R2
+Baseline (amanhã = hoje),0.0042,0.0114,0.999
+Regressão Linear,0.0062,0.0119,0.9989
+Random Forest,0.0055,0.0115,0.9989

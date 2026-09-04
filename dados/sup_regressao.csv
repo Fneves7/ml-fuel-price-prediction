@@ -1,0 +1,7 @@
+modelo,MAE,RMSE,R2
+Baseline (amanhã=hoje),0.0042,0.0114,0.999
+Reg. linear simples,0.0043,0.0114,0.999
+Reg. linear múltipla,0.0062,0.0119,0.9989
+Reg. polinomial (g2),0.005,0.0113,0.999
+Ridge,0.0061,0.0118,0.9989
+Lasso,0.0052,0.0118,0.9989

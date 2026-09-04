@@ -1,0 +1,7 @@
+modelo,MAE,RMSE
+Baseline (último valor),0.1993,0.222
+Suavização exponencial,0.1967,0.219
+"ARIMA(5,1,0)",0.1993,0.222
+SARIMA sem.,0.2073,0.2306
+Prophet,0.2928,0.3082
+LSTM,0.2297,0.2515
