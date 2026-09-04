@@ -39,10 +39,10 @@ Legenda de esforço: 🟢 baixo · 🟡 médio · 🔴 alto. Valor: ⭐ (1 a 3).
 
 | # | Tarefa | Esforço | Valor | Notas |
 |---|---|---|---|---|
-| C1 | **Atualizar dados externos** (Brent/EUR-USD do FRED) antes de entregar | 🟢 | ⭐⭐ | 2 comandos `curl` (ver `FONTES.md`). |
-| C2 | Adicionar **testes/asserções** simples (sem leakage, sem NaN nos alvos) | 🟡 | ⭐ | Garante que o pipeline não regride. |
-| C3 | Fixar **versões** exatas em `requirements.txt` | 🟢 | ⭐ | Reprodutibilidade. |
-| C4 | Script **"correr tudo"** (`run_all`) | 🟢 | ⭐ | Um comando que executa o pipeline 01→08 por ordem. |
+| ~~C1~~ | ~~**Atualizar dados externos** (FRED)~~ ✅ FEITO | 🟢 | ⭐⭐ | Caches FRED atualizadas (via curl) e dataset regenerado. |
+| ~~C2~~ | ~~**Testes/asserções**~~ ✅ FEITO | 🟡 | ⭐ | `scripts/testes_pipeline.py`: 11 testes (sem leakage, sem NaN indevido, alvos coerentes). 11/11 passam. |
+| ~~C3~~ | ~~Fixar **versões** exatas~~ ✅ FEITO | 🟢 | ⭐ | `requirements.txt` com todas as versões fixadas (`==`). |
+| ~~C4~~ | ~~Script **"correr tudo"** (`run_all`)~~ ✅ FEITO | 🟢 | ⭐ | `scripts/run_all.py`: corre 01→17 por ordem (`--tudo` inclui os 19 algoritmos). |
 | ~~C5~~ | ~~**Guardar os modelos treinados** (`joblib`)~~ ✅ FEITO | 🟢 | ⭐ | Feito com o F2: `modelos/modelo_direcao.joblib`, reutilizado nas execuções seguintes. |
 
 ## E. Outras famílias de ML — ~~FORA DE ÂMBITO~~
@@ -65,13 +65,12 @@ Legenda de esforço: 🟢 baixo · 🟡 médio · 🔴 alto. Valor: ⭐ (1 a 3).
 
 ---
 
-## Próximo passo recomendado
-**Secções A, B, D, F — todas concluídas.** E descartada (fora de âmbito). O projeto
-está completo, validado, explicado e documentado.
+## Estado final
+✅ **Backlog concluído.** Secções **A, B, C, D, F** todas feitas; **E** fora de âmbito
+(só aprendizagem supervisionada). O projeto está **completo, validado, explicado,
+testado e documentado** — pronto a entregar.
 
-Só resta a secção **C (qualidade)**, toda opcional:
-- **C4** — script "correr tudo" (🟢) · **C1** — atualizar Brent/EUR-USD antes de entregar
-  (🟢) · **C2** — testes/asserções (🟡) · **C3** — fixar versões (🟢). *(C5 ✅)*
+Ideias novas que surjam devem seguir os guiões em `prompts_opencode_ml/01_supervisionada`.
 
 > Nada aqui é bloqueante: o projeto já está **completo e funcional** (dados → análise →
 > 2 modelos → avaliação → conclusão). Este backlog é só para o levar mais longe.

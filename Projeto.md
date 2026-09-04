@@ -236,6 +236,10 @@ python scripts/14_permutacao.py             # B7: importância por permutação
 python scripts/15_analise_erros.py          # B10: onde falha o modelo
 python scripts/16_shap.py                   # B11: explicabilidade (SHAP)
 python scripts/17_skill_horizonte.py        # B12: skill por horizonte (1/3/7/14d)
+
+# utilitários
+python scripts/testes_pipeline.py           # 11 testes de integridade (sem leakage…)
+python scripts/run_all.py                    # corre tudo por ordem (--tudo p/ os 19 algoritmos)
 ```
 Ver `LOG.md` para o registo detalhado de todo o trabalho realizado e
 `FONTES.md` para todas as fontes de dados (DGEG, FRED, ISP/IVA).

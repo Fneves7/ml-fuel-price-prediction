@@ -1,4 +1,4 @@
 modelo,MAE,RMSE,R2,dir_acc
 Baseline (prever 0 / sem alteração),0.00424,0.01142,-0.00106,0.0
-Regressão Linear,0.00618,0.01185,-0.07893,0.60121
-Random Forest,0.00331,0.009,0.37847,0.75566
+Regressão Linear,0.00622,0.01188,-0.08484,0.60075
+Random Forest,0.00346,0.00986,0.2534,0.75535

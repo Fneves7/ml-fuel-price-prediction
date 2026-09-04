@@ -280,6 +280,15 @@ Módulo partilhado `scripts/_comum_modelo.py` (features enriquecidas). Instalado
   sempre acima do acaso. Figura `24`.
 Secções A, B, D, F concluídas; E fora de âmbito. Resta só C (qualidade), opcional.
 
+## 6m. Secção C concluída (qualidade)
+- **C1:** caches FRED atualizadas (5 séries via curl) e dataset regenerado.
+- **C2:** `scripts/testes_pipeline.py` — 11 asserções (sem leakage, sem NaN indevido,
+  outlier 2009 removido, IVA∈{20,21,23}%, sem infinitos). **11/11 passam.**
+- **C3:** `requirements.txt` com versões fixadas (`==`).
+- **C4:** `scripts/run_all.py` — corre 01→17 por ordem (`--tudo` inclui a pasta
+  supervisionada). Usado também para refrescar todos os outputs após o C1.
+- **Backlog encerrado:** secções A, B, C, D, F feitas; E fora de âmbito.
+
 ## 7. Conclusão do trabalho
 Sim, é possível prever a **direção** do preço com utilidade (≈79 %, acima do acaso
 de 61 %); prever o **valor exato** não compensa (o preço é muito estável dia-a-dia).
