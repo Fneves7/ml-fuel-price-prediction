@@ -231,6 +231,18 @@ código). Implementados os **19 algoritmos** em `scripts/supervisionada/` (4 fam
 - **D2 — README** de arranque rápido (`README.md` na raiz).
 - **D3 — IA generativa** (`IA_GENERATIVA.md`): mapeia onde a IA ajudou nas 6 fases.
 
+## 6i. B8 + B9 + F1 — probabilidade, decisão e dashboard
+- **B8 — probabilidade calibrada** (`scripts/09_probabilidade.py`): LightGBM +
+  calibração isotónica (FrozenEstimator; `cv='prefit'` foi removido no sklearn 1.9).
+  Brier 0,141; accuracy 0,79. Acerto por confiança: ≥70% → 89% (cobre 65%), ≥90% → 96%
+  (cobre 38%). Figura `18_probabilidade`; `dados/resultados_probabilidade.csv`.
+- **B9 — decisão "atesto/espero"** (`scripts/10_decisao.py`): regra baseada na previsão;
+  poupa 0,07 €/depósito de 50 L = **76% do oráculo**; nos dias em que esperou o preço
+  desceu 67% das vezes. Figura `19_decisao`; `dados/resultados_decisao.csv`.
+- **F1 — dashboard** (`scripts/11_dashboard.py` → `dashboard.html`): "Vou atestar hoje?"
+  com previsão + confiança + recomendação por combustível; publicado como Artifact.
+  (Bug corrigido: `preco_eur_l` estava duplicado nas colunas → erro do LightGBM.)
+
 ## 7. Conclusão do trabalho
 Sim, é possível prever a **direção** do preço com utilidade (≈79 %, acima do acaso
 de 61 %); prever o **valor exato** não compensa (o preço é muito estável dia-a-dia).

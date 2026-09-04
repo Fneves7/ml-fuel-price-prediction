@@ -147,6 +147,17 @@ trivial). A Regressão Linear é pior que o baseline: é preciso um modelo **nã
 ✅ O modelo distingue bem os três movimentos — a classe "mantém" tem F1 = 0,79 (não é
 ignorada). Ver `figuras/17_confusao_3classes.png`.
 
+**C4) Da previsão à decisão — probabilidade e poupança**
+- **Probabilidade calibrada** (`scripts/09`): em vez de só "sobe/desce", o modelo dá a
+  confiança. As probabilidades são **fiáveis** (curva de calibração cola-se à ideal) e
+  quando a confiança é **≥ 90 %** o modelo acerta **96 %** (cobrindo 38 % dos dias).
+- **Decisão "atesto hoje ou espero?"** (`scripts/10`): seguir o modelo poupa
+  **0,07 €/depósito de 50 L** (76 % da poupança máxima teórica); nos dias em que
+  esperou, o preço desceu mesmo em 67 % das vezes. A poupança por depósito é pequena
+  (o preço muda pouco ao dia), mas o modelo capta a maior parte do ganho possível.
+- **Dashboard** (`scripts/11` → `dashboard.html`): "Vou atestar hoje?" — previsão,
+  confiança e recomendação por combustível, publicado como página HTML.
+
 ### D) Comparação de algoritmos — Gradient Boosting vs Random Forest
 Comparámos **XGBoost** e **LightGBM** com a Random Forest nas três tarefas. Conclusão
 importante: **não há um vencedor universal** — depende da tarefa.
@@ -212,6 +223,10 @@ python scripts/04_modelo_regressao.py       # modelo do valor do preço
 python scripts/05_modelo_delta_e_7dias.py   # variação (delta) + direção a 7 dias
 python scripts/06_gradient_boosting.py      # XGBoost/LightGBM vs Random Forest
 python scripts/07_tuning_validacao.py       # validação temporal + afinação (B4)
+python scripts/08_multiclasse.py            # 3 classes: desce/mantém/sobe
+python scripts/09_probabilidade.py          # previsão com probabilidade calibrada
+python scripts/10_decisao.py                # "atesto hoje ou espero?" (poupança €)
+python scripts/11_dashboard.py              # gera dashboard.html (previsão do dia)
 ```
 Ver `LOG.md` para o registo detalhado de todo o trabalho realizado e
 `FONTES.md` para todas as fontes de dados (DGEG, FRED, ISP/IVA).

@@ -1,0 +1,125 @@
+<title>Vou Atestar Hoje?</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=Public+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+:root{--bg:#EAF0F1;--surf:#FFFFFF;--ink:#16262E;--muted:#5E747D;--primary:#0E5A75;
+  --up:#B4432B;--down:#2E7D6E;--accent:#C56A12;--line:#DFE7E9;--card:#F4F8F9;
+  --sans:"Public Sans",system-ui,sans-serif;--disp:"Archivo",var(--sans);--mono:"IBM Plex Mono",monospace;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);
+  padding:26px 20px 40px;display:flex;flex-direction:column;align-items:center}
+.wrap{width:min(94vw,980px)}
+header.top{background:#0B2E3D;color:#fff;border-radius:16px;padding:26px 30px;
+  position:relative;overflow:hidden;margin-bottom:20px}
+header.top .orb{position:absolute;right:-40px;bottom:-60px;width:220px;height:220px;
+  border-radius:50%;background:radial-gradient(circle at 40% 40%,#12658a,#0b2e3d 72%);opacity:.7}
+.kick{font-family:var(--mono);font-size:12px;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--accent);margin:0 0 6px;font-weight:600}
+header.top h1{font-family:var(--disp);font-weight:800;font-size:2.2rem;margin:0 0 6px;
+  letter-spacing:-.02em;position:relative;z-index:2}
+header.top p{margin:0;color:#CFE0E6;font-size:1rem;position:relative;z-index:2}
+header.top b{color:#fff}
+.summary{display:flex;gap:22px;margin-top:16px;position:relative;z-index:2}
+.summary div{font-family:var(--mono);font-size:.9rem;color:#CFE0E6}
+.summary b{font-family:var(--disp);font-size:1.4rem;display:block}
+.summary .s-up b{color:#F08a70} .summary .s-down b{color:#7fd6c5}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+@media(max-width:620px){.grid{grid-template-columns:1fr}}
+.card{background:var(--surf);border:1px solid var(--line);border-radius:12px;
+  padding:16px 18px;box-shadow:0 6px 18px -12px rgba(11,46,61,.4)}
+.c-top{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.c-top h3{font-family:var(--disp);font-weight:700;font-size:1.06rem;margin:0;color:var(--primary)}
+.price{font-family:var(--mono);font-weight:600;font-size:1.1rem;color:var(--ink);white-space:nowrap}
+.price small{color:var(--muted);font-size:.7rem;font-weight:500}
+.dir{display:flex;align-items:center;gap:9px;margin:12px 0 8px}
+.dir .arrow{font-size:1.15rem}
+.dir.up .arrow,.dir.up .dir-txt{color:var(--up)}
+.dir.down .arrow,.dir.down .dir-txt{color:var(--down)}
+.dir-txt{font-family:var(--disp);font-weight:800;font-size:1.25rem}
+.conf{margin-left:auto;font-family:var(--mono);font-size:.8rem;color:var(--muted)}
+.bar{height:8px;background:#E7EEEF;border-radius:5px;overflow:hidden}
+.bar-fill{height:100%;border-radius:5px}
+.bar-fill.up{background:var(--up)} .bar-fill.down{background:var(--down)}
+.rec{margin-top:13px;display:inline-block;font-family:var(--mono);font-weight:600;
+  font-size:.82rem;padding:6px 12px;border-radius:20px}
+.rec-now{background:rgba(180,67,43,.12);color:#8f2e1c}
+.rec-wait{background:rgba(46,125,110,.13);color:#1d5a4d}
+.foot{margin-top:20px;background:var(--card);border:1px solid var(--line);border-radius:12px;
+  padding:16px 20px;font-size:.9rem;color:var(--muted);line-height:1.5}
+.foot b{color:var(--ink)}
+.foot .warn{color:var(--accent);font-weight:600}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div class="orb"></div>
+    <p class="kick">Previsão para 02/09/2026</p>
+    <h1>Vou atestar hoje?</h1>
+    <p>Estimativa do movimento do preço à bomba <b>amanhã</b> (02/09/2026),
+       a partir dos dados de <b>01/09/2026</b>.</p>
+    <div class="summary">
+      <div class="s-up"><b>2</b> devem subir</div>
+      <div class="s-down"><b>6</b> devem descer/manter</div>
+    </div>
+  </header>
+
+  <div class="grid">
+    <article class="card down">
+  <div class="c-top"><h3>Gasolina especial 95</h3><span class="price">2,038 <small>€/L</small></span></div>
+  <div class="dir down"><span class="arrow">&#9660;</span><span class="dir-txt">Desce</span>
+     <span class="conf">88% confiança</span></div>
+  <div class="bar"><div class="bar-fill down" style="width:88%"></div></div>
+  <div class="rec rec-wait">Pode esperar</div>
+</article><article class="card up">
+  <div class="c-top"><h3>Gasolina simples 95</h3><span class="price">2,021 <small>€/L</small></span></div>
+  <div class="dir up"><span class="arrow">&#9650;</span><span class="dir-txt">Sobe</span>
+     <span class="conf">85% confiança</span></div>
+  <div class="bar"><div class="bar-fill up" style="width:85%"></div></div>
+  <div class="rec rec-now">Atestar hoje</div>
+</article><article class="card up">
+  <div class="c-top"><h3>Gasolina 98</h3><span class="price">2,195 <small>€/L</small></span></div>
+  <div class="dir up"><span class="arrow">&#9650;</span><span class="dir-txt">Sobe</span>
+     <span class="conf">86% confiança</span></div>
+  <div class="bar"><div class="bar-fill up" style="width:86%"></div></div>
+  <div class="rec rec-now">Atestar hoje</div>
+</article><article class="card down">
+  <div class="c-top"><h3>Gasolina especial 98</h3><span class="price">2,231 <small>€/L</small></span></div>
+  <div class="dir down"><span class="arrow">&#9660;</span><span class="dir-txt">Desce</span>
+     <span class="conf">65% confiança</span></div>
+  <div class="bar"><div class="bar-fill down" style="width:65%"></div></div>
+  <div class="rec rec-wait">Pode esperar</div>
+</article><article class="card down">
+  <div class="c-top"><h3>Gasóleo especial</h3><span class="price">2,054 <small>€/L</small></span></div>
+  <div class="dir down"><span class="arrow">&#9660;</span><span class="dir-txt">Desce</span>
+     <span class="conf">98% confiança</span></div>
+  <div class="bar"><div class="bar-fill down" style="width:98%"></div></div>
+  <div class="rec rec-wait">Pode esperar</div>
+</article><article class="card down">
+  <div class="c-top"><h3>Gasóleo simples</h3><span class="price">2,022 <small>€/L</small></span></div>
+  <div class="dir down"><span class="arrow">&#9660;</span><span class="dir-txt">Desce</span>
+     <span class="conf">97% confiança</span></div>
+  <div class="bar"><div class="bar-fill down" style="width:97%"></div></div>
+  <div class="rec rec-wait">Pode esperar</div>
+</article><article class="card down">
+  <div class="c-top"><h3>Biodiesel B15</h3><span class="price">1,652 <small>€/L</small></span></div>
+  <div class="dir down"><span class="arrow">&#9660;</span><span class="dir-txt">Desce</span>
+     <span class="conf">98% confiança</span></div>
+  <div class="bar"><div class="bar-fill down" style="width:98%"></div></div>
+  <div class="rec rec-wait">Pode esperar</div>
+</article><article class="card down">
+  <div class="c-top"><h3>GPL Auto</h3><span class="price">0,886 <small>€/L</small></span></div>
+  <div class="dir down"><span class="arrow">&#9660;</span><span class="dir-txt">Desce</span>
+     <span class="conf">73% confiança</span></div>
+  <div class="bar"><div class="bar-fill down" style="width:73%"></div></div>
+  <div class="rec rec-wait">Pode esperar</div>
+</article>
+  </div>
+
+  <div class="foot">
+    <b>Como ler:</b> a barra mostra a <b>confiança</b> do modelo (LightGBM calibrado).
+    Se o preço deve subir, o modelo sugere <b>atestar hoje</b>; se deve descer, <b>pode esperar</b>.
+    <br><span class="warn">Aviso:</span> é uma estimativa estatística para fins do projeto
+    (~79–82 % de acerto na direção), não um conselho financeiro. Fonte dos preços: DGEG.
+  </div>
+</div>
